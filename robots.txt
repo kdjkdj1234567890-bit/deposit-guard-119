@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /__qa/
-Sitemap:
+
+Sitemap: https://kdjkdj1234567890-bit.github.io/deposit-guard-119/sitemap.xml
