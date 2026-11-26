@@ -508,7 +508,7 @@
     S.push({ d: 'D+9', date: addDays(today, 9), when: '9일 뒤', title: '반환 기한', body: '내용증명 도달 후 7일을 기한으로 정합니다. 기한을 넘기면 지체책임이 확정됩니다.', tone: 'deadline' });
     S.push({ d: 'D+10', date: addDays(today, 10), when: '10일 뒤', title: '임차권등기명령 신청', body: '이사 전에 신청해야 대항력·우선변제권을 유지합니다. 비용 46,840원은 임대인에게 청구할 수 있습니다.', tone: 'legal' });
     S.push({ d: 'D+30', date: addDays(today, 30), when: '한 달 뒤', title: '지급명령 신청', body: '인지 ' + fmtWon(r.costs.paymentOrderFee) + ' + 송달료 ' + fmtWon(r.costs.paymentOrderService) + '. 임대인이 2주 안에 이의하지 않으면 확정됩니다.', tone: 'legal' });
-    S.push({ d: 'D+60', date: addDays(today, 60), when: '두 달 뒤', title: '이의 시 소액심판', body: '3,000만 원 이하면 소액심판으로 전환합니다. 1회 변론으로 끝나는 경우가 많습니다.', tone: 'legal' });
+    S.push({ d: 'D+60', date: addDays(today, 60), when: '두 달 뒤', title: r.isSmallClaim ? '이의 시 소액심판' : '이의 시 본안소송', body: r.isSmallClaim ? '3,000만 원 이하면 소액심판으로 전환합니다. 1회 변론으로 끝나는 경우가 많습니다.' : '3,000만 원을 넘으면 일반 민사소송으로 전환됩니다. 변론이 여러 번 열릴 수 있습니다.', tone: 'legal' });
     S.push({ d: 'D+90', date: addDays(today, 90), when: '석 달 뒤', title: '강제집행 · 배당', body: '확정된 지급명령으로 임차주택 경매를 신청하고 배당요구합니다.', tone: 'end' });
     return S;
   }
