@@ -458,6 +458,11 @@
 
   var DOC_PLACEHOLDER = '문서를 생성하면 이곳에 초안이 나옵니다.\n\n· 내용증명: 공제 항목별 이의 + 반환 기한 + 법적 조치 예고\n· 임차권등기명령 신청서: 신청 취지 · 소명자료 · 비용\n· 지급명령 신청서: 청구취지 · 청구원인 · 산정 근거\n· 기숙사 변상 이의신청서: 규정·감가상각 근거 요구\n· 하자보수 요청서: 수선의무 · 15일 이내 계획 통보 요구';
 
+  function sel_val() {
+    var el = $('docType');
+    return el ? el.value : 'content';
+  }
+
   function invalidateDoc(msg) {
     state.fullText = '';
     state.unlocked = false;
@@ -469,6 +474,7 @@
     $('docState').textContent = msg || '대기 중';
     $('docState').className = 'doc-state';
     $('docMeta').textContent = '왼쪽 빈칸을 채우고 "문서 생성"을 누르세요.';
+    $('docPanelTitle').textContent = DOC_TITLES[sel_val()] || '문서 초안';
   }
 
   function updateDocTypes() {
@@ -482,7 +488,7 @@
       if (v === 'dorm') o.hidden = (mode !== 'dorm');
       if (v === 'defect') o.hidden = (mode !== 'newapt');
     });
-    if (mode === 'dorm' && (sel.value === 'injunction' || sel.value === 'content')) sel.value = 'dorm';
+    if (mode === 'dorm' && sel.value !== 'dorm' && sel.value !== 'payment') sel.value = 'dorm';
     if (mode !== 'dorm' && sel.value === 'dorm') sel.value = 'content';
     if (mode !== 'newapt' && sel.value === 'defect') sel.value = 'content';
     if (sel.value !== before) invalidateDoc('문서 종류가 바뀌었습니다 — 다시 생성하세요');
