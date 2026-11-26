@@ -434,7 +434,7 @@
     };
     var costTotal = costs.contentCert + costs.paymentOrderFee + costs.paymentOrderService +
       (isSmall ? costs.smallClaimFee + costs.smallClaimService : costs.civilFee + costs.civilService);
-    var costRatio = claimForFee > 0 ? costTotal / claimForFee : 0;
+    var costRatio = claimForFee > 1000 ? costTotal / claimForFee : 0;
 
     var tips = [];
     if (input.moveOut !== 'full') tips.push('퇴거 당일 방마다 영상을 찍고, 도어락 비밀번호·열쇠를 넘긴 시각을 문자로 남기세요. 인도 시점이 지연이자의 출발점입니다.');

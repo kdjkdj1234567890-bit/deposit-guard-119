@@ -229,7 +229,7 @@
     $('cSCFee').textContent = E.fmtWon(r.isSmallClaim ? r.costs.smallClaimFee : r.costs.civilFee);
     $('cSCSvc').textContent = E.fmtWon(r.isSmallClaim ? r.costs.smallClaimService : r.costs.civilService);
     $('cSum').textContent = E.fmtWon(r.costTotal);
-    $('cRatio').textContent = r.claimForFee > 0 ? '청구액의 ' + (r.costRatio * 100).toFixed(1) + '%' : '';
+    $('cRatio').textContent = (r.costRatio > 0 && r.costRatio <= 3) ? '청구액의 ' + (r.costRatio * 100).toFixed(1) + '%' : '';
 
     $('result').hidden = false;
     updateDocTypes();
@@ -464,6 +464,7 @@
   }
 
   function invalidateDoc(msg) {
+    var had = !!state.fullText;
     state.fullText = '';
     state.unlocked = false;
     $('docPreview').textContent = DOC_PLACEHOLDER;
@@ -471,7 +472,7 @@
     $('copyDoc').disabled = true;
     $('downloadDoc').disabled = true;
     $('printDoc').disabled = true;
-    $('docState').textContent = msg || '대기 중';
+    $('docState').textContent = had ? (msg || '대기 중') : '대기 중';
     $('docState').className = 'doc-state';
     $('docMeta').textContent = '왼쪽 빈칸을 채우고 "문서 생성"을 누르세요.';
     $('docPanelTitle').textContent = DOC_TITLES[sel_val()] || '문서 초안';
